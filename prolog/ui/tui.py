@@ -7,6 +7,7 @@ from pathlib import Path
 
 DB_PATH = Path.home() / "Projects" / ".prolog" / "projects.json"
 
+
 class PrologTUI(App):
     CSS_PATH = None
     BINDINGS = [("q", "quit", "Quit")]
@@ -32,7 +33,11 @@ class PrologTUI(App):
         inv = load_inventory(DB_PATH)
         for proj in inv["projects"]:
             self.table.add_row(
-                proj["id"], proj["name"], proj["category"], proj["status"], proj["path"]
+                proj["id"],
+                proj["name"],
+                proj["category"],
+                proj["status"],
+                proj["path"]
             )
 
     def on_button_pressed(self, event):
@@ -44,6 +49,7 @@ class PrologTUI(App):
         elif bid == "start":
             start_project()
             self.refresh_table()
+
 
 class ClassifyScreen(App):
     def __init__(self, parent):
@@ -66,6 +72,7 @@ class ClassifyScreen(App):
             self.exit()
         elif event.button.id == "cancel":
             self.exit()
+
 
 def launch():
     PrologTUI().run()

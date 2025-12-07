@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 
+
 def load_inventory(db_path: Path) -> dict:
     """Load JSON inventory safely."""
     if not db_path.exists():
@@ -11,6 +12,7 @@ def load_inventory(db_path: Path) -> dict:
     except json.JSONDecodeError:
         print("[!] Corrupted inventory file. Reinitializing...")
         return {"projects": []}
+
 
 def save_inventory(db_path: Path, data: dict):
     """Write JSON inventory safely."""

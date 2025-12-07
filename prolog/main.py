@@ -6,10 +6,11 @@ import argparse
 from prolog.manager import classify, start_project, list_projects, open_project
 from prolog.ui import tui, gui
 
+
 def main():
     parser = argparse.ArgumentParser(
         prog="prolog",
-        description="Prolog – Classify, manage, and catalog your projects easily."
+        description="Prolog-Classify, manage, and catalog your projects easily"
     )
 
     sub = parser.add_subparsers(dest="command")
@@ -46,6 +47,7 @@ def main():
         open_project(args.project_id)
     else:
         parser.print_help()
+
 
 if __name__ == "__main__":
     main()

@@ -6,6 +6,7 @@ from pathlib import Path
 
 DB_PATH = Path.home() / "Projects" / ".prolog" / "projects.json"
 
+
 def launch():
     root = tk.Tk()
     root.title("Prolog — Project Catalog GUI")
@@ -26,7 +27,11 @@ def launch():
         inv = load_inventory(DB_PATH)
         for proj in inv["projects"]:
             tree.insert("", "end", values=(
-                proj["id"], proj["name"], proj["category"], proj["status"], proj["path"]
+                proj["id"],
+                proj["name"],
+                proj["category"],
+                proj["status"],
+                proj["path"]
             ))
 
     def do_classify():

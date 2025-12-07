@@ -1,6 +1,7 @@
 import shutil
 from pathlib import Path
 
+
 def safe_move(src: Path, dest: Path):
     """Safely move a file or directory, overwriting only if necessary."""
     dest.parent.mkdir(parents=True, exist_ok=True)

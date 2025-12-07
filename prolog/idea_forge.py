@@ -15,6 +15,7 @@ verbs = [
     "craft", "transform", "model", "train", "manifest"
 ]
 
+
 def random_idea():
     adj = random.choice(adjectives).capitalize()
     noun = random.choice(nouns).capitalize()

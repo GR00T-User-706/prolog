@@ -11,7 +11,15 @@ from prolog.idea_forge import random_idea
 
 BASE_DIR = Path.home() / "Projects"
 DB_PATH = BASE_DIR / ".prolog" / "projects.json"
-CATEGORIES = ["idea", "started", "in_progress", "working", "finished", "broken"]
+CATEGORIES = [
+    "idea",
+    "started",
+    "in_progress",
+    "working",
+    "finished",
+    "broken"
+]
+
 
 def ensure_environment():
     os.makedirs(BASE_DIR / ".prolog", exist_ok=True)
@@ -19,8 +27,10 @@ def ensure_environment():
         with open(DB_PATH, "w") as f:
             json.dump({"projects": []}, f, indent=4)
 
+
 def generate_id(hash_str: str) -> str:
     return f"PRJ-{hash_str[:6].upper()}"
+
 
 def classify(path, category):
     ensure_environment()
@@ -67,6 +77,7 @@ def classify(path, category):
     save_inventory(DB_PATH, inv)
     print(f"[+] Project {project_id} classified under {category}")
 
+
 def start_project():
     ensure_environment()
     name = input("Enter new project name (or leave blank for random idea): ").strip()
@@ -107,6 +118,7 @@ def start_project():
     print(f"[+] New project {project_id} created at {project_path}")
     subprocess.run(["kate", str(project_path)])
 
+
 def list_projects():
     ensure_environment()
     inv = load_inventory(DB_PATH)
@@ -116,6 +128,7 @@ def list_projects():
     print("📂 Current Projects:")
     for proj in inv["projects"]:
         print(f"- {proj['id']} [{proj['category']}] {proj['name']} ({proj['status']})")
+
 
 def open_project(project_id):
     ensure_environment()

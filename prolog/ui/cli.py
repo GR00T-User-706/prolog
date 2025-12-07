@@ -1,7 +1,8 @@
- """
+"""
 CLI helper module for Prolog — mainly delegates to manager functions.
 """
 from prolog.manager import classify, start_project, list_projects, open_project
+
 
 def run_cli():
     print("[CLI MODE]")
