@@ -32,8 +32,9 @@ def generate_id(hash_str: str) -> str:
     return f"PRJ-{hash_str[:6].upper()}"
 
 
-def classify(path, category):
+def classify(path, category, move=True, target_dir: Path | None = None):
     ensure_environment()
+
     if category not in CATEGORIES:
         print(f"[!] Invalid category. Using 'in_progress'.")
         category = "in_progress"
@@ -46,26 +47,35 @@ def classify(path, category):
     hash_str = hash_path(p)
     inv = load_inventory(DB_PATH)
 
-    # check duplicates
     for proj in inv["projects"]:
         if proj["hash"] == hash_str:
             print(f"[!] Duplicate detected: {proj['id']} at {proj['path']}")
             return
 
     project_id = generate_id(hash_str)
-    dest_dir = BASE_DIR / category / project_id
+
+    if target_dir is None:
+        dest_dir = BASE_DIR / category / project_id
+    else:
+        dest_dir = Path(target_dir).expanduser().resolve()
+
     dest_dir.parent.mkdir(parents=True, exist_ok=True)
 
-    if p.is_file():
-        dest_dir.mkdir(parents=True, exist_ok=True)
-        shutil.move(str(p), dest_dir / p.name)
+    if move:
+        if p.is_file():
+            dest_dir.mkdir(parents=True, exist_ok=True)
+            shutil.move(str(p), dest_dir / p.name)
+        else:
+            shutil.move(str(p), dest_dir)
+        final_path = dest_dir
     else:
-        shutil.move(str(p), dest_dir)
+        # leave in place; project path is where it already lives
+        final_path = p if p.is_dir() else p.parent
 
     record = {
         "id": project_id,
         "name": p.stem,
-        "path": str(dest_dir),
+        "path": str(final_path),
         "category": category,
         "status": "working" if category != "idea" else "idea",
         "hash": hash_str,
@@ -80,7 +90,9 @@ def classify(path, category):
 
 def start_project():
     ensure_environment()
-    name = input("Enter new project name (or leave blank for random idea): ").strip()
+    name = input(
+        "Enter new project name (or leave blank for random idea): "
+    ).strip()
     if not name:
         name = random_idea()
         print(f"[+] Random idea: {name}")
