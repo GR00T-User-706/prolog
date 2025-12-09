@@ -1,0 +1,35 @@
+Metadata-Version: 2.4
+Name: prolog
+Version: 1.0.0
+Summary: Prolog – A unified project catalog CLI/TUI/GUI for managing creative chaos.
+Author: YourName
+Author-email: you@example.com
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: textual
+Requires-Dist: rich
+Dynamic: author
+Dynamic: author-email
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# Prolog – Project + Catalog
+
+**Prolog** is your unified system to classify, catalog, and manage creative or development projects.
+
+### Features
+- 🧭 CLI, 🖥️ TUI, and 🪟 GUI modes
+- 📦 Auto classification and hashing of files/folders
+- 🔍 Duplicate detection
+- 🧱 JSON-based live inventory
+- 💡 Random idea generator
+- 📝 Launches Kate automatically
+
+### Installation
+```bash
+git clone <your repo>
+cd prolog
+pip install -e .

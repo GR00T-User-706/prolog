@@ -1,0 +1,13 @@
+README.md
+setup.py
+prolog/__init__.py
+prolog/hasher.py
+prolog/idea_forge.py
+prolog/main.py
+prolog/manager.py
+prolog.egg-info/PKG-INFO
+prolog.egg-info/SOURCES.txt
+prolog.egg-info/dependency_links.txt
+prolog.egg-info/entry_points.txt
+prolog.egg-info/requires.txt
+prolog.egg-info/top_level.txt
