@@ -15,3 +15,7 @@
 git clone <your repo>
 cd prolog
 pip install -e .
+
+## Project standards
+
+See [PROJECT_STANDARDS.md](docs/PROJECT_STANDARDS.md) for project-specific documentation, contribution, and validation standards.
